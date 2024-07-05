@@ -1,6 +1,5 @@
 package com.sparta.bookstore.entity;
 
-import com.sparta.bookstore.dto.BookRequestDto;
 import com.sparta.bookstore.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,7 +15,7 @@ public class User {
     @Id
     // id값을 따로 할당하지 않아도 데이터베이스가 자동으로 AUTO_INCREMENT를 하여 기본키를 생성.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long UserId;
 
     @Column(name = "name", nullable = false)
     private String name;

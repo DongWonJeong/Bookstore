@@ -6,6 +6,9 @@ import lombok.Getter;
 @Getter
 public class UserResponseDto {
 
+    // 아이디
+    private Long userId;
+
     //이름
     private String name;
 
@@ -19,6 +22,7 @@ public class UserResponseDto {
     private String address;
 
     public UserResponseDto(User user){
+        this.userId = user.getUserId();
         this.name = user.getName();
         this.gender = user.getGender();
         this.phoneNumber = user.getPhoneNumber();

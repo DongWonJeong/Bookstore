@@ -25,9 +25,9 @@ public class BookController {
     }
 
     //도서 정보 조회
-    @GetMapping("/books/{id}")
-    public BookResponseDto getBook(@PathVariable Long id) {
-        return bookService.getBook(id);
+    @GetMapping("/books/{bookid}")
+    public BookResponseDto getBook(@PathVariable Long bookid) {
+        return bookService.getBook(bookid);
     }
 
     //도서 등록
@@ -35,5 +35,11 @@ public class BookController {
     public BookResponseDto createBook(@RequestBody BookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
+
+    //도서 대출
+
+    //도서 반납
+
+    //대출 내역 조회
 
 }

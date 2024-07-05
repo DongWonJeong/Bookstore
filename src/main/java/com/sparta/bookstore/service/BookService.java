@@ -33,9 +33,9 @@ public class BookService {
     }
 
     //도서 정보 조회
-    public BookResponseDto getBook(Long id) {
+    public BookResponseDto getBook(Long bookId) {
         //id가 없다면
-        Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
 
         //id가 있다면
         return new BookResponseDto(book);

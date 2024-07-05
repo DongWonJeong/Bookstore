@@ -9,7 +9,7 @@ import java.util.Date;
 public class BookResponseDto {
 
     // 아이디
-    private Long id;
+    private Long bookId;
 
     //제목
     private String title;
@@ -24,7 +24,7 @@ public class BookResponseDto {
     private Date nowDate;
 
     public BookResponseDto(Book book) {
-        this.id = book.getId();
+        this.bookId = book.getBookId();
         this.title = book.getTitle();
         this.writer = book.getWriter();
         this.publish = book.getPublish();

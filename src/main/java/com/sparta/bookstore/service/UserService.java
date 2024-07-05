@@ -1,9 +1,7 @@
 package com.sparta.bookstore.service;
 
-import com.sparta.bookstore.dto.BookResponseDto;
 import com.sparta.bookstore.dto.UserRequestDto;
 import com.sparta.bookstore.dto.UserResponseDto;
-import com.sparta.bookstore.entity.Book;
 import com.sparta.bookstore.entity.User;
 import com.sparta.bookstore.repository.UserRepository;
 import org.springframework.stereotype.Service;

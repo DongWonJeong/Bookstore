@@ -15,7 +15,7 @@ public class Book extends Timestamped{
     @Id
     // id값을 따로 할당하지 않아도 데이터베이스가 자동으로 AUTO_INCREMENT를 하여 기본키를 생성.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long bookId;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -35,4 +35,5 @@ public class Book extends Timestamped{
         this.language = requestDto.getLanguage();
         this.publish = requestDto.getPublish();
     }
+
 }

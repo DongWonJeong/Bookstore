@@ -1,6 +1,5 @@
 package com.sparta.bookstore.controller;
 
-import com.sparta.bookstore.dto.BookResponseDto;
 import com.sparta.bookstore.dto.UserRequestDto;
 import com.sparta.bookstore.dto.UserResponseDto;
 import com.sparta.bookstore.service.UserService;
