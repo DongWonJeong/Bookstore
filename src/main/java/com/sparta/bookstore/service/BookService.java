@@ -52,7 +52,7 @@ public class BookService {
         Book saveBook = bookRepository.save(book);
 
         // Entity -> ResponseDto
-        BookResponseDto bookResponseDto = new BookResponseDto(book);
+        BookResponseDto bookResponseDto = new BookResponseDto(saveBook);
 
         return bookResponseDto;
     }

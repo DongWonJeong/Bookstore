@@ -30,7 +30,6 @@ public class BookController {
         return bookService.getBook(id);
     }
 
-
     //도서 등록
     @PostMapping("/books")
     public BookResponseDto createBook(@RequestBody BookRequestDto requestDto) {

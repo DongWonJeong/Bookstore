@@ -4,15 +4,16 @@ import lombok.Getter;
 
 @Getter
 public class BookRequestDto {
+
     //제목
     private String title;
 
-    //작성자명
+    //저자
     private String writer;
 
-    //비밀번호
+    //언어
     private String language;
 
-    //작성 내용
+    //출판사
     private String publish;
 }
