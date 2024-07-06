@@ -3,7 +3,7 @@ package com.sparta.bookstore.dto;
 import com.sparta.bookstore.entity.Book;
 import lombok.Getter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 public class BookResponseDto {
@@ -21,7 +21,7 @@ public class BookResponseDto {
     private String publish;
 
     //등록일
-    private Date nowDate;
+    private LocalDate nowDate;
 
     public BookResponseDto(Book book) {
         this.bookId = book.getBookId();

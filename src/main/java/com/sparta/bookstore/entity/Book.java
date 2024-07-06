@@ -35,5 +35,4 @@ public class Book extends Timestamped{
         this.language = requestDto.getLanguage();
         this.publish = requestDto.getPublish();
     }
-
 }

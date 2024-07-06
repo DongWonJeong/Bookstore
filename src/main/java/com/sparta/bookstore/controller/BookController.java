@@ -1,7 +1,6 @@
 package com.sparta.bookstore.controller;
 
-import com.sparta.bookstore.dto.BookRequestDto;
-import com.sparta.bookstore.dto.BookResponseDto;
+import com.sparta.bookstore.dto.*;
 import com.sparta.bookstore.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    //도서 등록
+    @PostMapping("/books")
+    public BookResponseDto createBook(@RequestBody BookRequestDto requestDto) {
+        return bookService.createBook(requestDto);
+    }
+
     //도서 목록 조회
     @GetMapping("/books")
     public List<BookResponseDto> getBooks() {
@@ -25,21 +30,33 @@ public class BookController {
     }
 
     //도서 정보 조회
-    @GetMapping("/books/{bookid}")
-    public BookResponseDto getBook(@PathVariable Long bookid) {
-        return bookService.getBook(bookid);
+    @GetMapping("/books/{bookId}")
+    public BookResponseDto getBook(@PathVariable Long bookId) {
+        return bookService.getBook(bookId);
     }
 
-    //도서 등록
-    @PostMapping("/books")
-    public BookResponseDto createBook(@RequestBody BookRequestDto requestDto) {
-        return bookService.createBook(requestDto);
+    // user 등록
+    @PostMapping("/users")
+    public UserResponseDto createUser(@RequestBody UserRequestDto requestDto) {
+        return bookService.createUser(requestDto);
     }
 
     //도서 대출
+    @PostMapping("/rental")
+    public RentalResponseDto getRentalBook(@RequestBody RentalRequestDto requestDto) {
+        return bookService.getRentalBook(requestDto);
+    }
 
-    //도서 반납
+//    //도서 반납
+//    @PutMapping("/rental/{rentalId}/return")
+//    public Long getReturnBook(@PathVariable Long rentalId) {
+//        return bookService.getReturnBook(rentalId);
+//    }
 
-    //대출 내역 조회
+//    //대출 내역 조회
+//    @GetMapping("/rental/{userId}")
+//    public List<RentalResponseDto> getRentalList(@PathVariable Long userId) {
+//        return bookService.getRentalList(userId);
+//    }
 
 }

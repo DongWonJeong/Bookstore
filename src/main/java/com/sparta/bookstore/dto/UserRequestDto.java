@@ -5,6 +5,8 @@ import lombok.Getter;
 @Getter
 public class UserRequestDto {
 
+    private Long userId;
+
     //이름
     private String name;
 

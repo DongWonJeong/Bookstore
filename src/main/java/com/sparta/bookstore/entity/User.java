@@ -15,7 +15,7 @@ public class User {
     @Id
     // id값을 따로 할당하지 않아도 데이터베이스가 자동으로 AUTO_INCREMENT를 하여 기본키를 생성.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long UserId;
+    private Long userId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -23,10 +23,10 @@ public class User {
     @Column(name = "gender", nullable = false)
     private String gender;
 
-    @Column(name = "user_number", nullable = false)
+    @Column(name = "userNumber", nullable = false)
     private String userNumber;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phoneNumber", nullable = false)
     private String phoneNumber;
 
     @Column(name = "address", nullable = false)
