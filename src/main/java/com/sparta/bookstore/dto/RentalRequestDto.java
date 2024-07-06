@@ -7,5 +7,4 @@ public class RentalRequestDto {
 
     private Long bookId;
     private Long userId;
-
 }

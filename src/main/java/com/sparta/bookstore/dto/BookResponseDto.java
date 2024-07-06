@@ -17,7 +17,7 @@ public class BookResponseDto {
     //저자
     private String writer;
 
-    //언어
+    //출판사
     private String publish;
 
     //등록일

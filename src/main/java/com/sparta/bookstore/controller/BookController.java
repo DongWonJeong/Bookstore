@@ -47,15 +47,15 @@ public class BookController {
         return bookService.getRentalBook(requestDto);
     }
 
-//    //도서 반납
-//    @PutMapping("/rental/{rentalId}/return")
-//    public Long getReturnBook(@PathVariable Long rentalId) {
-//        return bookService.getReturnBook(rentalId);
-//    }
+    //도서 반납
+    @PutMapping("/rental/{rentalId}/return")
+    public Long getReturnBook(@PathVariable Long rentalId) {
+        return bookService.getReturnBook(rentalId);
+    }
 
 //    //대출 내역 조회
 //    @GetMapping("/rental/{userId}")
-//    public List<RentalResponseDto> getRentalList(@PathVariable Long userId) {
+//    public List<ReadResponseDto> getRentalList(@PathVariable Long userId) {
 //        return bookService.getRentalList(userId);
 //    }
 

@@ -8,12 +8,13 @@ import com.sparta.bookstore.repository.BookRepository;
 import com.sparta.bookstore.repository.RentalRepository;
 import com.sparta.bookstore.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -119,16 +120,39 @@ public class BookService {
         return new RentalResponseDto(rental);
     }
 
-//    // 도서 반납
-//    public Long getReturnedBook(Long rentalId) {
-//        // rentalId로 대출 정보 조회
-//        Rental rental = rentalRepository.findById(rentalId)
-//                .orElseThrow(() -> new IllegalArgumentException("선택한 도서는 존재하지 않습니다."));
+    // 도서 반납
+    @Transactional
+    public Long getReturnBook(Long rentalId) {
+        // rentalId로 대출 정보 조회
+        Rental rental = rentalRepository.findById(rentalId)
+                .orElseThrow(() -> new IllegalArgumentException("선택한 도서는 존재하지 않습니다."));
+
+        rental.update();
+
+        return rentalId;
+    }
+
+    // 내역 조회
+//    @Transactional
+//    public List<ReadResponseDto> getRentalList(Long userId) {
 //
+//        List<ReadResponseDto> list = new ArrayList<>();
 //
-//        rental.update();
+//        List<Long> longList = findBookIdsByUserId(userId);
 //
-//        return rentalId;
+//        User user = userRepository.findById(userId).orElseThrow(() ->
+//                new IllegalArgumentException("선택한 회원은 존재하지 않습니다.")
+//        );
+//
+//         for (Long bookId : longList) {
+//              Book book = bookRepository.findById(bookId).orElseThrow(() ->
+//                new IllegalArgumentException("선택한 책은 존재하지 않습니다.")
+//        );
+//        ReadResponseDto responseDto = new ReadResponseDto(user, book);
+//        list.add(responseDto);
+//        }
+//
+//        return list;
 //    }
 
 
@@ -162,4 +186,10 @@ public class BookService {
         // 대출 기록이 존재하면 해당 도서는 이미 대출 중
         return rental.isPresent();
     }
+
+//    // 회원이 대출한 책의 Id들을 조회하는 메서드
+//    public List<Long> findBookIdsByUserId(Long userId) {
+//        return rentalRepository.findBookIdsByUserId(userId);
+//    }
+
 }

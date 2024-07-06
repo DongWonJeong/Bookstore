@@ -20,6 +20,7 @@ public class Rental extends Timestamped {
 
     private Long userId;
 
+
     //대출일
     @Column(name= "nowDate", nullable = false)
     private LocalDate nowDate;
@@ -56,9 +57,12 @@ public class Rental extends Timestamped {
         this.endDate = endDate;
     }
 
-//    public void update() {
-//        this.isReturned = true;
-//        this.isBookState = true;
-//    }
+    public void update() {
+        this.isReturned = true;
+        this.isBookState = true;
+    }
 
+//    public Book getBook() {
+//        return new Book();
+//    }
 }
