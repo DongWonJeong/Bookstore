@@ -12,7 +12,5 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 
     Optional<Rental> findByBookId(Long bookId);
 
-//    // userId로 대출된 bookId 조회하는 쿼리
-//    @Query(value = "SELECT bookId FROM rental WHERE userId = :userId ORDER BY nowDate ASC", nativeQuery = true)
-//    List<Long> findBookIdsByUserId(Long userId);
+
 }

@@ -133,27 +133,25 @@ public class BookService {
     }
 
     // 내역 조회
-//    @Transactional
-//    public List<ReadResponseDto> getRentalList(Long userId) {
-//
-//        List<ReadResponseDto> list = new ArrayList<>();
-//
-//        List<Long> longList = findBookIdsByUserId(userId);
-//
-//        User user = userRepository.findById(userId).orElseThrow(() ->
-//                new IllegalArgumentException("선택한 회원은 존재하지 않습니다.")
-//        );
-//
-//         for (Long bookId : longList) {
-//              Book book = bookRepository.findById(bookId).orElseThrow(() ->
-//                new IllegalArgumentException("선택한 책은 존재하지 않습니다.")
-//        );
-//        ReadResponseDto responseDto = new ReadResponseDto(user, book);
-//        list.add(responseDto);
-//        }
-//
-//        return list;
-//    }
+    public List<ReadResponseDto> getRentalList(Long userId) {
+
+        // 사용자 확인
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+
+        // 대출 내역 조회
+        List<Rental> rentals = rentalRepository.findByUserId(userId);
+
+        // ReadResponseDto 리스트 생성
+        List<ReadResponseDto> rentalList = new ArrayList<>();
+        for (Rental rental : rentals) {
+            Book book = bookRepository.findById(rental.getBookId())
+                    .orElseThrow(() -> new IllegalArgumentException("해당 도서가 존재하지 않습니다."));
+            rentalList.add(new ReadResponseDto(user, book));
+        }
+        return rentalList;
+    }
+
 
 
     //회원 여부
@@ -187,9 +185,5 @@ public class BookService {
         return rental.isPresent();
     }
 
-//    // 회원이 대출한 책의 Id들을 조회하는 메서드
-//    public List<Long> findBookIdsByUserId(Long userId) {
-//        return rentalRepository.findBookIdsByUserId(userId);
-//    }
 
 }

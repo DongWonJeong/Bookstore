@@ -53,10 +53,9 @@ public class BookController {
         return bookService.getReturnBook(rentalId);
     }
 
-//    //대출 내역 조회
-//    @GetMapping("/rental/{userId}")
-//    public List<ReadResponseDto> getRentalList(@PathVariable Long userId) {
-//        return bookService.getRentalList(userId);
-//    }
-
+    //대출 내역 조회
+    @GetMapping("/rental/{userId}")
+    public List<ReadResponseDto> getRentalList(@PathVariable Long userId) {
+        return bookService.getRentalList(userId);
+    }
 }
