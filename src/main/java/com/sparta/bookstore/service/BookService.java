@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -106,6 +105,7 @@ public class BookService {
         Rental rental = new Rental();
         rental.setUserId(userId);
         rental.setBookId(bookId);
+
         //기본 상태는 대출중!
         rental.setReturnedStatus(false);
 
@@ -121,12 +121,15 @@ public class BookService {
     }
 
     // 도서 반납
+    //해당 메서드 내에서 실행되는 모든 DB작업은 하나의 트랜잭션 범위 내에서 처리.
+    //update 시 하나의 트랜잭션으로 묶어서 일관성있는 데이터 처리가 가능.
     @Transactional
     public Long getReturnBook(Long rentalId) {
         // rentalId로 대출 정보 조회
         Rental rental = rentalRepository.findById(rentalId)
                 .orElseThrow(() -> new IllegalArgumentException("선택한 도서는 존재하지 않습니다."));
 
+        // 반납
         rental.update();
 
         return rentalId;
@@ -135,24 +138,23 @@ public class BookService {
     // 내역 조회
     public List<ReadResponseDto> getRentalList(Long userId) {
 
-        // 사용자 확인
+        // 회원 확인
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
 
         // 대출 내역 조회
         List<Rental> rentals = rentalRepository.findByUserId(userId);
 
-        // ReadResponseDto 리스트 생성
+        // 조회된 대출 내역을 저장할 List 생성
         List<ReadResponseDto> rentalList = new ArrayList<>();
         for (Rental rental : rentals) {
+            //각 대출에 대한 도서 정보 조회
             Book book = bookRepository.findById(rental.getBookId())
                     .orElseThrow(() -> new IllegalArgumentException("해당 도서가 존재하지 않습니다."));
             rentalList.add(new ReadResponseDto(user, book));
         }
         return rentalList;
     }
-
-
 
     //회원 여부
     private boolean isUser(Long userId) {
@@ -166,6 +168,7 @@ public class BookService {
     public boolean isBook(Long userId) {
         //회원이 대출한 도서 목록 조회
         List<Rental> rentalUser = rentalRepository.findByUserId(userId);
+
         //대출된 도서 중 반납되지 않은 도서 여부
         for (Rental rental : rentalUser) {
             if(!rental.isReturned()){
@@ -173,17 +176,18 @@ public class BookService {
                 return true;
             }
         }
-        // 반납하지 않은 도서 x
+        // 모두 반납 시
         return false;
     }
 
     //도서 대출 상태 여부
     public boolean takeBook(Long bookId) {
+        // bookId를 기반으로 대출 기록을 조회
+        // Optional은 값이 존재하는지 여부를 명시적으로 표현.
         Optional<Rental> rental = rentalRepository.findByBookId(bookId);
 
         // 대출 기록이 존재하면 해당 도서는 이미 대출 중
+        // .isPresent()를 사용하여 값의 존재 여부를 쉽게 확인.
         return rental.isPresent();
     }
-
-
 }

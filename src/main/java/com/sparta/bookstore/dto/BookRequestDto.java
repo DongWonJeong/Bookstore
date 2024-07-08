@@ -5,8 +5,6 @@ import lombok.Getter;
 @Getter
 public class BookRequestDto {
 
-    private Long bookId;
-
     //제목
     private String title;
 

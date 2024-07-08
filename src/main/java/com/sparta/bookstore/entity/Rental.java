@@ -14,7 +14,7 @@ public class Rental extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long rentalId;
 
     private Long bookId;
 
@@ -45,10 +45,6 @@ public class Rental extends Timestamped {
         this.bookId = bookId;
     }
 
-    public void setReturnedStatus(boolean returnStatus) {
-        this.isReturned = returnStatus;
-    }
-
     public void setNowDate(LocalDate nowDate) {
         this.nowDate = nowDate;
     }
@@ -57,12 +53,12 @@ public class Rental extends Timestamped {
         this.endDate = endDate;
     }
 
+    public void setReturnedStatus(boolean returnStatus) {
+        this.isReturned = returnStatus;
+    }
+
     public void update() {
         this.isReturned = true;
         this.isBookState = true;
     }
-
-//    public Book getBook() {
-//        return new Book();
-//    }
 }

@@ -1,11 +1,8 @@
 package com.sparta.bookstore.dto;
 
 import com.sparta.bookstore.entity.Book;
-import com.sparta.bookstore.entity.Rental;
 import com.sparta.bookstore.entity.User;
 import lombok.Getter;
-
-import java.time.LocalDate;
 
 @Getter
 public class ReadResponseDto {
@@ -21,5 +18,4 @@ public class ReadResponseDto {
         this.title = book.getTitle();
         this.writer = book.getWriter();
     }
-
 }
