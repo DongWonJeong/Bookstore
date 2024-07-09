@@ -23,10 +23,10 @@ public class User {
     @Column(name = "gender", nullable = false)
     private String gender;
 
-    @Column(name = "userNumber", nullable = false)
+    @Column(name = "userNumber", nullable = false, unique = true)
     private String userNumber;
 
-    @Column(name = "phoneNumber", nullable = false)
+    @Column(name = "phoneNumber", nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(name = "address", nullable = false)
